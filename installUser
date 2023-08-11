@@ -13,6 +13,11 @@ declare -r VERSION="${SCRIPT_NAME}  1  (11-AUG-2023)"
 #
 ###############################################################################
 #
+# the user local directory to use for the local installation
+DESTDIR="$HOME/bin/develop"
+#
+###############################################################################
+#
 SCRIPT_DIR=`dirname $0`
 #
 cwd=`pwd`
@@ -34,10 +39,9 @@ declare -r SCRIPT_DIR
 umask 0027
 export LANG="en_US.UTF-8"
 #
-DESTDIR="$HOME/bin/develop"
-#
 ###############################################################################
 #
+remove=0
 print_usage() {
     cat <<EOT
 
@@ -47,6 +51,7 @@ Usage: ${SCRIPT_NAME} [<options>]
     Options:
     -h|--help    : show this help text and exit
     -V|--version : show version information and exit
+    -r|--remove  : remove the installed programs and exit
 
     DESTDIR : $DESTDIR
 
@@ -60,14 +65,14 @@ Copied programs:
 I use the following aliases in file \$HOME/.bash_aliases to
 access the programs:
 
-alias ex_dev="$HOME/bin/develop/ex"
-alias expreserve_dev="$HOME/bin/develop/expreserve"
-alias exrecover_dev="$HOME/bin/develop/exrecover"
-alias videv="$HOME/bin/develop/vi"
-alias vi_dev="$HOME/bin/develop/vi"
-alias view_dev="$HOME/bin/develop/view"
-alias vimdev="$HOME/develop/gitrepos/github/vim/src/vim"
-alias vim_dev="$HOME/develop/gitrepos/github/vim/src/vim"
+alias ex_dev='$HOME/bin/develop/ex'
+alias expreserve_dev='$HOME/bin/develop/expreserve'
+alias exrecover_dev='$HOME/bin/develop/exrecover'
+alias videv='$HOME/bin/develop/vi'
+alias vi_dev='$HOME/bin/develop/vi'
+alias view_dev='$HOME/bin/develop/view'
+alias vimdev='$HOME/develop/gitrepos/github/vim/src/vim'
+alias vim_dev='$HOME/develop/gitrepos/github/vim/src/vim'
 
 EOT
 }
@@ -85,6 +90,9 @@ do
         -V | --version)
             echo $VERSION
             exit 0
+            ;;
+        -r | --remove)
+            remove=1
             ;;
         --)
             shift 1
@@ -108,6 +116,10 @@ done
 #
 if [ ! -d ${DESTDIR} ]
 then
+    if [ ${remove} -eq 1 ]
+    then
+        exit 0
+    fi
     echo "mkdir -p ${DESTDIR}"
     mkdir -p ${DESTDIR} || exit 1
     echo "chmod 700 ${DESTDIR}"
@@ -116,8 +128,18 @@ fi
 #
 ###############################################################################
 #
+echo "rm -f ${DESTDIR}/ex ${DESTDIR}/exrecover ${DESTDIR}/expreserve ${DESTDIR}/vi ${DESTDIR}/view"
 rm -f ${DESTDIR}/ex ${DESTDIR}/exrecover ${DESTDIR}/expreserve \
       ${DESTDIR}/vi ${DESTDIR}/view
+#
+###############################################################################
+#
+if [ ${remove} -eq 1 ]
+then
+    exit 0
+fi
+#
+###############################################################################
 #
 echo "cp ex ${DESTDIR}/ex"
 cp ex ${DESTDIR}/ex || exit 1
