@@ -1,0 +1,148 @@
+#!/bin/bash
+#
+##############################################
+# Copyright (c) 2023 by Manfred Rosenboom    #
+# https://maroph.github.io/ (maroph@pm.me)   #
+#                                            #
+# This work is licensed under a MIT License. #
+# https://choosealicense.com/licenses/mit/   #
+##############################################
+#
+declare -r SCRIPT_NAME=`basename $0`
+declare -r VERSION="${SCRIPT_NAME}  1  (11-AUG-2023)"
+#
+###############################################################################
+#
+SCRIPT_DIR=`dirname $0`
+#
+cwd=`pwd`
+if [ "${SCRIPT_DIR}" = "." ]
+then
+    SCRIPT_DIR=${cwd}
+else
+    cd ${SCRIPT_DIR} || exit 1
+    SCRIPT_DIR=`pwd`
+    cd ${cwd} || exit 1
+fi
+cwd=
+unset cwd
+#
+declare -r SCRIPT_DIR
+#
+###############################################################################
+#
+umask 0027
+export LANG="en_US.UTF-8"
+#
+DESTDIR="$HOME/bin/develop"
+#
+###############################################################################
+#
+print_usage() {
+    cat <<EOT
+
+Usage: ${SCRIPT_NAME} [<options>]
+       Install the programs in the user local directory DESTDIR
+
+    Options:
+    -h|--help    : show this help text and exit
+    -V|--version : show version information and exit
+
+    DESTDIR : $DESTDIR
+
+Copied programs:
+  - ex
+  - expreserve
+  - exrecover
+  - vi
+  - view
+
+I use the following aliases in file \$HOME/.bash_aliases to
+access the programs:
+
+alias ex_dev="$HOME/bin/develop/ex"
+alias expreserve_dev="$HOME/bin/develop/expreserve"
+alias exrecover_dev="$HOME/bin/develop/exrecover"
+alias videv="$HOME/bin/develop/vi"
+alias vi_dev="$HOME/bin/develop/vi"
+alias view_dev="$HOME/bin/develop/view"
+alias vimdev="$HOME/develop/gitrepos/github/vim/src/vim"
+alias vim_dev="$HOME/develop/gitrepos/github/vim/src/vim"
+
+EOT
+}
+#
+###############################################################################
+#
+while :
+do
+    option=$1
+    case "$1" in
+        -h | --help)
+            print_usage
+            exit 0
+            ;;
+        -V | --version)
+            echo $VERSION
+            exit 0
+            ;;
+        --)
+            shift 1
+            break
+            ;;
+        --*)
+            echo "${SCRIPT_NAME}: '$1' : unknown option"
+            exit 1
+            ;;
+        -*)
+            echo "${SCRIPT_NAME}: '$1' : unknown option"
+            exit 1
+            ;;
+        *)  break;;
+    esac
+#
+    shift 1
+done
+#
+###############################################################################
+#
+if [ ! -d ${DESTDIR} ]
+then
+    echo "mkdir -p ${DESTDIR}"
+    mkdir -p ${DESTDIR} || exit 1
+    echo "chmod 700 ${DESTDIR}"
+    chmod 700 ${DESTDIR} || exit 1
+fi
+#
+###############################################################################
+#
+rm -f ${DESTDIR}/ex ${DESTDIR}/exrecover ${DESTDIR}/expreserve \
+      ${DESTDIR}/vi ${DESTDIR}/view
+#
+echo "cp ex ${DESTDIR}/ex"
+cp ex ${DESTDIR}/ex || exit 1
+chmod 700 ${DESTDIR}/ex || exit 1
+#
+echo "cp exrecover ${DESTDIR}/exrecover"
+cp exrecover ${DESTDIR}/exrecover || exit 1
+chmod 700 ${DESTDIR}/exrecover || exit 1
+#
+echo "cp expreserve ${DESTDIR}/expreserve"
+cp expreserve ${DESTDIR}/expreserve || exit 1
+chmod 700 ${DESTDIR}/expreserve || exit 1
+#
+###############################################################################
+#
+echo "cd ${DESTDIR}"
+cd ${DESTDIR} || exit 1
+#
+echo "ln ex vi"
+ln ex vi || exit 1
+#
+echo "ln ex view"
+ln ex view || exit 1
+#
+###############################################################################
+#
+exit 0
+

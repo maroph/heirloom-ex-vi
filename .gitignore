@@ -1,0 +1,9 @@
+*.a
+*.log
+*.o
+*.out
+Makefile
+compat.h
+ex
+expreserve
+exrecover
