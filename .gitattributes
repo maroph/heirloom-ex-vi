@@ -1,0 +1,26 @@
+.* export-ignore
+#
+* text=auto
+#
+*.1  text
+*.c  text
+*.h  text
+*.md text
+#
+Makefile.in text eol=lf
+configure   text eol=lf
+makeoptions text eol=lf
+pkginfo     text eol=lf
+wvi         text eol=lf
+catd/en_US  text eol=lf
+libterm/Makefile text eol=lf
+libuxre/Makefile.mk text eol=lf
+libuxre/COPYING.LGPL text eol=lf
+libuxre/CVS/Entries text eol=lf
+libuxre/CVS/Repository text eol=lf
+libuxre/CVS/Root text eol=lf
+#
+Changes text
+LICENSE text
+README  text
+TODO    text
