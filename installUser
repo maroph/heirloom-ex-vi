@@ -65,12 +65,12 @@ Copied programs:
 I use the following aliases in file \$HOME/.bash_aliases to
 access the programs:
 
-alias ex_dev='$HOME/bin/develop/ex'
-alias expreserve_dev='$HOME/bin/develop/expreserve'
-alias exrecover_dev='$HOME/bin/develop/exrecover'
-alias videv='$HOME/bin/develop/vi'
-alias vi_dev='$HOME/bin/develop/vi'
-alias view_dev='$HOME/bin/develop/view'
+alias ex_dev='\$HOME/bin/develop/ex'
+alias expreserve_dev='\$HOME/bin/develop/expreserve'
+alias exrecover_dev='\$HOME/bin/develop/exrecover'
+alias videv='\$HOME/bin/develop/vi'
+alias vi_dev='\$HOME/bin/develop/vi'
+alias view_dev='\$HOME/bin/develop/view'
 
 EOT
 }
