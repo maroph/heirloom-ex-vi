@@ -9,7 +9,7 @@
 ##############################################
 #
 declare -r SCRIPT_NAME=`basename $0`
-declare -r VERSION="${SCRIPT_NAME}  1  (11-AUG-2023)"
+declare -r VERSION="${SCRIPT_NAME}  1  (14-AUG-2023)"
 #
 ###############################################################################
 #
@@ -71,8 +71,6 @@ alias exrecover_dev='$HOME/bin/develop/exrecover'
 alias videv='$HOME/bin/develop/vi'
 alias vi_dev='$HOME/bin/develop/vi'
 alias view_dev='$HOME/bin/develop/view'
-alias vimdev='$HOME/develop/gitrepos/github/vim/src/vim'
-alias vim_dev='$HOME/develop/gitrepos/github/vim/src/vim'
 
 EOT
 }
