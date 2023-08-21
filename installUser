@@ -9,12 +9,12 @@
 ##############################################
 #
 declare -r SCRIPT_NAME=`basename $0`
-declare -r VERSION="${SCRIPT_NAME}  1  (14-AUG-2023)"
+declare -r VERSION="${SCRIPT_NAME}  1  (21-AUG-2023)"
 #
 ###############################################################################
 #
 # the user local directory to use for the local installation
-DESTDIR="$HOME/bin/develop"
+DESTDIR="$HOME/bin/legacy"
 #
 ###############################################################################
 #
@@ -65,12 +65,12 @@ Copied programs:
 I use the following aliases in file \$HOME/.bash_aliases to
 access the programs:
 
-alias ex_dev='\$HOME/bin/develop/ex'
-alias expreserve_dev='\$HOME/bin/develop/expreserve'
-alias exrecover_dev='\$HOME/bin/develop/exrecover'
-alias videv='\$HOME/bin/develop/vi'
-alias vi_dev='\$HOME/bin/develop/vi'
-alias view_dev='\$HOME/bin/develop/view'
+alias ex_dev='\$HOME/bin/legacy/ex'
+alias expreserve_dev='\$HOME/bin/legacy/expreserve'
+alias exrecover_dev='\$HOME/bin/legacy/exrecover'
+alias videv='\$HOME/bin/legacy/vi'
+alias vi_dev='\$HOME/bin/legacy/vi'
+alias view_dev='\$HOME/bin/legacy/view'
 
 EOT
 }
